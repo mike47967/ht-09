@@ -29,8 +29,8 @@ This repository contains the implementation of a program `printrandom` that gene
 
 - `main.c`: Implements the main program logic and command-line argument parsing.
 - `random_source.h`: Defines the API for RNG objects and their operations.
-- `linear.c`: Implements the Linear Congruential Generator and its factory function `random_linear_factory`.
-- `mt.c`: Implements the Mersenne Twister generator using the MTwister project and its factory function `random_mt_factory`.
+- `linear.c`: Implements the Linear Congruential Generator and its factory function `random_factory_linear`.
+- `mt.c`: Implements the Mersenne Twister generator using the MTwister project and its factory function `random_factory_mt`.
 - `Makefile`: Automates the compilation and linking process.
 
 ## Usage
