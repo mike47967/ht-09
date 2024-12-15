@@ -33,9 +33,9 @@ This repository contains the implementation of a program `printrandom` that gene
 - `mt.c`: Implements the Mersenne Twister generator using the MTwister project and its factory function `random_mt_factory`.
 - `Makefile`: Automates the compilation and linking process.
 
-## Usage
+### Usage
 
-### Build the Program
+## Build the Program
 
 Run the following command to build the program:
 
@@ -45,7 +45,7 @@ make
 
 This generates the executable printrandom.
 
-###Run the Program
+##Run the Program
 
 #The program takes the following command-line arguments:
 
@@ -53,7 +53,7 @@ This generates the executable printrandom.
 - `Count`: Number of random numbers to generate (0 to 100,000).
 - `Seed`: Initialization parameter for the chosen RNG.
 
-##Example usage:
+#Example usage:
 
 ```bash
 ./printrandom linear 10 12345
@@ -61,7 +61,7 @@ This generates the executable printrandom.
 
 This generates 10 random numbers using the Linear Congruential Generator with a seed of 12345.
 
-##Example Output
+#Example Output
 
 For the above command, the output might look like:
 
@@ -71,7 +71,7 @@ For the above command, the output might look like:
 ...
 ```
 
-###Clean Up
+##Clean Up
 
 To remove generated files:
 
@@ -107,6 +107,6 @@ The random source objects are defined using the following structure:
 - Dynamic Linking: The program is linked with -rdynamic and uses dlopen for dynamic symbol resolution.
 - Portability: The Makefile avoids hardcoding flags in CFLAGS and LDFLAGS, allowing them to be overridden.
 
-License
+##License
 
 This project is licensed under the MIT License.
