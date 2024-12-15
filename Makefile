@@ -12,4 +12,3 @@ compile:
 	@$(LD) main.o linear.o mt.o -o printrandom $(LDFLAGS) -rdynamic
 clean:
 	@rm -f linear.o mt.o main.o printrandom
-
