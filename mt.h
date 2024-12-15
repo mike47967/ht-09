@@ -1,6 +1,7 @@
 #include "random_source.h"
 
-enum {
+enum
+{
     FIRST_BIT = 0x80000000,
     LOWER_BITS = 0x7fffffff,
     TEMP_MASK_B = 0x9d2c5680,

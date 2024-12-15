@@ -6,14 +6,17 @@
 #include <limits.h>
 #include "random_source.h"
 
-enum {
+enum
+{
     DEFAULT_ARGS_NUM = 4
 };
 
 const char *linear_mode_enabler = "linear";
 const char *mt_mode_enabler = "mt";
 
-int main(int argc, char **argv) {
+int
+main(int argc, char **argv)
+{
     if (argc < DEFAULT_ARGS_NUM) {
         fprintf(stderr, "Usage: %s <gen type [linear|mt]> <n> <seed>\n", argv[0]);
         return 1;
@@ -35,7 +38,7 @@ int main(int argc, char **argv) {
             dlclose(hndl);
             return 1;
         }
-        f_rnd = (RandomSource *(*)(const char *)) sym;
+        f_rnd = (RandomSource * (*) (const char *) ) sym;
     } else if (!strcmp(type, mt_mode_enabler)) {
         void *sym = dlsym(hndl, "random_factory_mt");
         if (!sym) {
@@ -43,7 +46,7 @@ int main(int argc, char **argv) {
             dlclose(hndl);
             return 1;
         }
-        f_rnd = (RandomSource *(*)(const char *)) sym;
+        f_rnd = (RandomSource * (*) (const char *) ) sym;
     } else {
         fprintf(stderr, "Error: Invalid gen type.\n");
         dlclose(hndl);
