@@ -66,8 +66,9 @@ This generates 10 random numbers using the Linear Congruential Generator with a 
 For the above command, the output might look like:
 
 ```bash
-0.3451234567
-0.8901234567
+0.6551540485
+0.3048143233
+0.6749606337
 ...
 ```
 
