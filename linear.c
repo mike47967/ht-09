@@ -20,40 +20,40 @@ typedef struct linear_rnd
 } linear_rnd;
 
 static double
-linear_next(RandomSource *src)
+linear_next(RandomSource *source)
 {
-    linear_rnd *gen = src->gen;
+    linear_rnd *gen = source->gen;
     gen->prev = (MUL * gen->prev + INCR) % MOD;
-    src->gen = gen;
+    source->gen = gen;
     return (double) gen->prev / ((double) INT_MAX + 1);
 }
 
 static RandomSource *
-linear_destroy(RandomSource *src)
+linear_destroy(RandomSource *source)
 {
-    free(src->ops);
-    free(src->gen);
-    free(src);
+    free(source->ops);
+    free(source->gen);
+    free(source);
     return EXIT_ERROR;
 }
 
 RandomSource *
 random_factory_linear(const char *params)
 {
-    RandomSource *result = calloc(1, sizeof(*result));
+    RandomSource *res = calloc(1, sizeof(*res));
     RandomSourceOps *ops = calloc(1, sizeof(*ops));
-    if (!ops || !result) {
+    if (!ops || !res) {
         perror("calloc");
         return EXIT_ERROR;
     }
 
     ops->next = linear_next;
     ops->destroy = linear_destroy;
-    result->ops = ops;
+    res->ops = ops;
 
     errno = 0;
     char *eptr = NULL;
-    long seed = strtol(params, &eptr, DEC_RADIX);
+    long seed = strtol(params, &eptr, NUM_STR_LEN);
     if (errno || *eptr || (int) seed != seed || eptr == params || seed < 0) {
         perror("strtol");
         return EXIT_ERROR;
@@ -68,6 +68,6 @@ random_factory_linear(const char *params)
     }
 
     gen->prev = seed;
-    result->gen = gen;
-    return result;
+    res->gen = gen;
+    return res;
 }
