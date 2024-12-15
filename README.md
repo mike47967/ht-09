@@ -93,8 +93,8 @@ The random source objects are defined using the following structure:
 
 ### Factory Functions
 
-- `random_linear_factory`: Creates an LCG-based RNG object. The seed is interpreted as a positive integer using the lower 31 bits.
-- `random_mt_factory`: Creates an MT-based RNG object. The seed is interpreted as a 32-bit unsigned integer.
+- `random_factory_linear`: Creates an LCG-based RNG object. The seed is interpreted as a positive integer using the lower 31 bits.
+- `random_factory_mt`: Creates an MT-based RNG object. The seed is interpreted as a 32-bit unsigned integer.
 
 ### Main Program Logic
 
