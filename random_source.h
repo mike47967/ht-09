@@ -4,7 +4,7 @@
 
 enum
 {
-    DEC_RADIX = 10,
+    NUM_STR_LEN = 10,
     STATE_LEN = 624,
     STATE_M = 397
 };
@@ -16,13 +16,13 @@ typedef struct s_mt_rnd
 } mt_rnd;
 
 mt_rnd seedrnd(uint32_t seed);
-double rnd(mt_rnd *rand);
 uint32_t longrnd(mt_rnd *rand);
+double rnd_gen(mt_rnd *rand);
 
 typedef struct RandomSourceOps
 {
-    struct RandomSource *(*destroy)(struct RandomSource *src);
-    double (*next)(struct RandomSource *src);
+    struct RandomSource *(*destroy)(struct RandomSource *source);
+    double (*next)(struct RandomSource *source);
 } RandomSourceOps;
 
 typedef struct RandomSource

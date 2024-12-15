@@ -5,27 +5,27 @@
 #include "mt.h"
 
 static double
-mt_next(RandomSource *src)
+mt_next(RandomSource *source)
 {
-    return rnd(src->gen);
+    return rnd_gen(source->gen);
 }
 
 static RandomSource *
-mt_destroy(RandomSource *src)
+mt_destroy(RandomSource *source)
 {
-    free(src->ops);
-    free(src->gen);
-    free(src);
+    free(source->ops);
+    free(source->gen);
+    free(source);
     return EXIT_ERROR;
 }
 
 RandomSource *
-random_factory_mt(const char *params)
+random_factory_mt(const char *num_str)
 {
     errno = 0;
-    char *eptr = NULL;
-    long seed = strtol(params, &eptr, DEC_RADIX);
-    if (errno || *eptr || (int) seed != seed || eptr == params || seed < 0) {
+    char *buf = NULL;
+    long seed = strtol(num_str, &buf, NUM_STR_LEN);
+    if (errno || *buf || (int) seed != seed || buf == num_str || seed < 0) {
         fprintf(stderr, "Incorrect seed");
 
         return EXIT_ERROR;
@@ -33,8 +33,8 @@ random_factory_mt(const char *params)
 
     seed = seed & INT_MAX;
 
-    RandomSource *result = calloc(1, sizeof(*result));
-    if (result == NULL) {
+    RandomSource *res = calloc(1, sizeof(*res));
+    if (res == NULL) {
         fprintf(stderr, "Error allocating RandomSource\n");
 
         return EXIT_ERROR;
@@ -49,7 +49,7 @@ random_factory_mt(const char *params)
 
     ops->next = mt_next;
     ops->destroy = mt_destroy;
-    result->ops = ops;
+    res->ops = ops;
 
     mt_rnd *gen = calloc(1, sizeof(*gen));
     if (gen == NULL) {
@@ -58,6 +58,6 @@ random_factory_mt(const char *params)
     }
 
     *gen = seedrnd(seed);
-    result->gen = gen;
-    return result;
+    res->gen = gen;
+    return res;
 }
