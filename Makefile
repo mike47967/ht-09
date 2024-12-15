@@ -11,5 +11,6 @@ compile:
 	@$(CC) $(CFLAGS) mt.c -c -o mt.o
 	@$(LD) main.o linear.o mt.o -o printrandom $(LDFLAGS) -rdynamic
 clean:
-	@rm linear.o mt.o main.o
+	@rm -f linear.o mt.o main.o
+	@rm -f printrandom
 
